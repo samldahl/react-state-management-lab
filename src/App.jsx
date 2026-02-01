@@ -92,6 +92,17 @@ const App = () => {
   const [money, setMoney] = useState(100);
   const [fighters, setFighter] = useState(zombieFighters);
 
+    const handleAddFighter = (fighter) => {
+    if (money < fighter.price) {
+      console.log("Not enough money");
+      return;
+    }
+    
+    setTeam([...team, fighter]);
+    setFighter(fighters.filter((f) => f.id !== fighter.id));
+    setMoney(money - fighter.price);
+  };
+
   return (
     <>
     <h1>Zombie Fighter</h1>
@@ -106,7 +117,7 @@ const App = () => {
             <p>Price: ${fighter.price}</p>
             <p>Strength: {fighter.strength}</p>
             <p>Agility: {fighter.agility}</p>
-            <button>Add</button>
+            <button onClick={() => handleAddFighter(fighter)}>Add</button>
           </li>
         ))}
       </ul>
