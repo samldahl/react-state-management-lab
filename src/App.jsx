@@ -92,6 +92,9 @@ const App = () => {
   const [money, setMoney] = useState(100);
   const [fighters, setFighter] = useState(zombieFighters);
 
+  const totalStrength = team.reduce((sum, fighter) => sum + fighter.strength, 0);
+  const totalAgility = team.reduce((sum, fighter) => sum + fighter.agility, 0);
+
     const handleAddFighter = (fighter) => {
     if (money < fighter.price) {
       console.log("Not enough money");
@@ -107,7 +110,9 @@ const App = () => {
     <>
     <h1>Zombie Fighter</h1>
     <p>Money: ${money}</p>
-    
+    <p>Total Strength: {totalStrength}</p>
+    <p>Total Agility: {totalAgility}</p>
+
     <h2>Your Team</h2>
     {team.length === 0 ? (
       <p>Pick some team members!</p>
